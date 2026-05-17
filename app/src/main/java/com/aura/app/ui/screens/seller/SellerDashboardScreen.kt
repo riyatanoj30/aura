@@ -1,23 +1,17 @@
 package com.aura.app.ui.screens.seller
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SellerDashboardScreen() {
 
@@ -25,76 +19,68 @@ fun SellerDashboardScreen() {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "Seller Dashboard",
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                },
-                colors = TopAppBarDefaults.topAppBarColors()
+                    Text(text = "Seller Dashboard")
+                }
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add Product"
+                )
+            }
         }
-    ) { innerPadding ->
+    ) { paddingValues ->
 
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
-
-            contentPadding = PaddingValues(16.dp),
+                .padding(paddingValues)
+                .padding(16.dp),
 
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            item {
-                DashboardCard(
-                    title = "Total Sales",
-                    value = "₹1,24,500"
-                )
+            items(10) { index ->
+
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    elevation = 6.dp
+                ) {
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+
+                        Column {
+
+                            Text(
+                                text = "Product ${index + 1}",
+                                style = MaterialTheme.typography.h6
+                            )
+
+                            Spacer(modifier = Modifier.height(4.dp))
+
+                            Text(
+                                text = "₹ ${(index + 1) * 999}"
+                            )
+                        }
+
+                        Icon(
+                            imageVector = Icons.Default.ShoppingCart,
+                            contentDescription = null
+                        )
+                    }
+                }
             }
-
-            item {
-                DashboardCard(
-                    title = "Orders",
-                    value = "248"
-                )
-            }
-
-            item {
-                DashboardCard(
-                    title = "Products",
-                    value = "56"
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun DashboardCard(
-    title: String,
-    value: String
-) {
-
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
-        )
-    ) {
-
-        Column(
-            modifier = Modifier.padding(20.dp)
-        ) {
-
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodyMedium
-            )
-
-            Text(
-                text = value,
-                style = MaterialTheme.typography.headlineMedium
-            )
         }
     }
 }
