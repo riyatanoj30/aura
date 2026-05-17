@@ -1,17 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Base application theme — dark luxury -->
-    <style name="Theme.AURA" parent="android:Theme.Material.NoActionBar">
-        <item name="android:statusBarColor">@color/ink</item>
-        <item name="android:navigationBarColor">@color/ink</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowBackground">@color/ink</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Main App Theme -->
+    <style
+        name="Theme.Aura"
+        parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="android:statusBarColor">
+            @android:color/transparent
+        </item>
+
+        <item name="android:navigationBarColor">
+            @android:color/black
+        </item>
+
     </style>
 
-    <!-- Launch screen theme (uses splash screen API) -->
-    <style name="Theme.AURA.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/ink</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_aura_mark</item>
-        <item name="postSplashScreenTheme">@style/Theme.AURA</item>
+    <!-- Splash Theme -->
+    <style
+        name="Theme.Aura.Splash"
+        parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">
+            @android:color/black
+        </item>
+
+        <item name="windowSplashScreenAnimatedIcon">
+            @mipmap/ic_launcher
+        </item>
+
+        <item name="postSplashScreenTheme">
+            @style/Theme.Aura
+        </item>
+
     </style>
+
 </resources>
