@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -22,9 +23,8 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-          cache: gradle
 
-      - name: Make gradlew executable
+      - name: Grant Execute Permission
         run: chmod +x gradlew
 
       - name: Clean Project
