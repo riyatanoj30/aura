@@ -15,7 +15,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner =
+            "androidx.test.runner.AndroidJUnitRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -26,7 +28,9 @@ android {
             isMinifyEnabled = false
 
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
+                getDefaultProguardFile(
+                    "proguard-android-optimize.txt"
+                ),
                 "proguard-rules.pro"
             )
         }
@@ -54,40 +58,53 @@ android {
 
 dependencies {
 
-    // Core Android
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
-    implementation("androidx.activity:activity-compose:1.9.1")
 
-    // Compose BOM
-    implementation(platform("androidx.compose:compose-bom:2024.06.00"))
+    implementation(
+        "androidx.lifecycle:lifecycle-runtime-ktx:2.8.3"
+    )
 
-    // Compose UI
+    implementation(
+        "androidx.activity:activity-compose:1.9.0"
+    )
+
+    implementation(
+        platform(
+            "androidx.compose:compose-bom:2024.06.00"
+        )
+    )
+
     implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
 
-    // Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation(
+        "androidx.compose.ui:ui-graphics"
+    )
 
-    // Icons
-    implementation("androidx.compose.material:material-icons-extended")
+    implementation(
+        "androidx.compose.ui:ui-tooling-preview"
+    )
 
-    // Coil Image Loader
-    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation(
+        "androidx.compose.material3:material3"
+    )
 
-    // Animations
-    implementation("androidx.compose.animation:animation")
+    implementation(
+        "androidx.navigation:navigation-compose:2.7.7"
+    )
 
-    // Debug
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation(
+        "io.coil-kt:coil-compose:2.6.0"
+    )
 
-    // Testing
-    testImplementation("junit:junit:4.13.2")
+    implementation(
+        "androidx.core:core-splashscreen:1.0.1"
+    )
 
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.06.00"))
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation(
+        "androidx.compose.ui:ui-tooling"
+    )
+
+    debugImplementation(
+        "androidx.compose.ui:ui-test-manifest"
+    )
 }
