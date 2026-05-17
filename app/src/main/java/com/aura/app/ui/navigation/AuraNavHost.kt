@@ -23,104 +23,244 @@ import com.aura.app.ui.screens.splash.SplashScreen
 import com.aura.app.ui.screens.wishlist.WishlistScreen
 
 @Composable
-fun AuraNavHost(navController: NavHostController) {
+fun AuraNavHost(
+    navController: NavHostController
+) {
+
     NavHost(
         navController = navController,
         startDestination = Routes.SPLASH,
-        // Cinematic fade — the cheap "slide-in-from-right" of stock Android
-        // would betray the design entirely.
-        enterTransition  = { fadeIn(tween(450)) },
-        exitTransition   = { fadeOut(tween(220)) },
-        popEnterTransition = { fadeIn(tween(350)) },
-        popExitTransition  = { fadeOut(tween(220)) }
-    ) {
-        composable(Routes.SPLASH) {
-            SplashScreen(onFinished = {
-                navController.navigate(Routes.HOME) {
-                    popUpTo(Routes.SPLASH) { inclusive = true }
-                }
-            })
+
+        enterTransition = {
+            fadeIn(animationSpec = tween(450))
+        },
+
+        exitTransition = {
+            fadeOut(animationSpec = tween(220))
+        },
+
+        popEnterTransition = {
+            fadeIn(animationSpec = tween(350))
+        },
+
+        popExitTransition = {
+            fadeOut(animationSpec = tween(220))
         }
-        composable(Routes.HOME) {
-            HomeScreen(
-                onOpenCategory = { id -> navController.navigate(Routes.category(id)) },
-                onOpenProduct = { id -> navController.navigate(Routes.product(id)) },
-                onOpenCart = { navController.navigate(Routes.CART) },
-                onOpenWishlist = { navController.navigate(Routes.WISHLIST) },
-                onOpenSearch = { navController.navigate(Routes.SEARCH) },
-                onOpenProfile = { navController.navigate(Routes.PROFILE) }
+
+    ) {
+
+        composable(Routes.SPLASH) {
+
+            SplashScreen(
+                onFinished = {
+
+                    navController.navigate(Routes.HOME) {
+
+                        popUpTo(Routes.SPLASH) {
+                            inclusive = true
+                        }
+                    }
+                }
             )
         }
+
+        composable(Routes.HOME) {
+
+            HomeScreen(
+                onOpenCategory = { id ->
+                    navController.navigate(Routes.category(id))
+                },
+
+                onOpenProduct = { id ->
+                    navController.navigate(Routes.product(id))
+                },
+
+                onOpenCart = {
+                    navController.navigate(Routes.CART)
+                },
+
+                onOpenWishlist = {
+                    navController.navigate(Routes.WISHLIST)
+                },
+
+                onOpenSearch = {
+                    navController.navigate(Routes.SEARCH)
+                },
+
+                onOpenProfile = {
+                    navController.navigate(Routes.PROFILE)
+                }
+            )
+        }
+
         composable(
             route = Routes.CATEGORY,
-            arguments = listOf(navArgument("categoryId") { type = NavType.StringType })
+
+            arguments = listOf(
+                navArgument("categoryId") {
+                    type = NavType.StringType
+                }
+            )
         ) { backStackEntry ->
-            val id = backStackEntry.arguments?.getString("categoryId") ?: "women"
+
+            val id =
+                backStackEntry.arguments?.getString("categoryId")
+                    ?: "women"
+
             CategoryScreen(
                 categoryId = id,
-                onBack = { navController.popBackStack() },
-                onOpenProduct = { pid -> navController.navigate(Routes.product(pid)) },
-                onOpenCart = { navController.navigate(Routes.CART) }
+
+                onBack = {
+                    navController.popBackStack()
+                },
+
+                onOpenProduct = { pid ->
+                    navController.navigate(Routes.product(pid))
+                },
+
+                onOpenCart = {
+                    navController.navigate(Routes.CART)
+                }
             )
         }
+
         composable(
             route = Routes.PRODUCT,
-            arguments = listOf(navArgument("productId") { type = NavType.StringType })
+
+            arguments = listOf(
+                navArgument("productId") {
+                    type = NavType.StringType
+                }
+            )
         ) { backStackEntry ->
-            val id = backStackEntry.arguments?.getString("productId") ?: "p001"
+
+            val id =
+                backStackEntry.arguments?.getString("productId")
+                    ?: "p001"
+
             ProductDetailScreen(
                 productId = id,
-                onBack = { navController.popBackStack() },
-                onOpenProduct = { pid -> navController.navigate(Routes.product(pid)) },
-                onOpenCart = { navController.navigate(Routes.CART) }
+
+                onBack = {
+                    navController.popBackStack()
+                },
+
+                onOpenProduct = { pid ->
+                    navController.navigate(Routes.product(pid))
+                },
+
+                onOpenCart = {
+                    navController.navigate(Routes.CART)
+                }
             )
         }
+
         composable(Routes.CART) {
+
             CartScreen(
-                onBack = { navController.popBackStack() },
-                onCheckout = { navController.navigate(Routes.CHECKOUT) },
-                onContinue = { navController.popBackStack() }
+                onBack = {
+                    navController.popBackStack()
+                },
+
+                onCheckout = {
+                    navController.navigate(Routes.CHECKOUT)
+                },
+
+                onContinue = {
+                    navController.popBackStack()
+                }
             )
         }
+
         composable(Routes.CHECKOUT) {
+
             CheckoutScreen(
-                onBack = { navController.popBackStack() },
+                onBack = {
+                    navController.popBackStack()
+                },
+
                 onPlaced = {
+
                     navController.navigate(Routes.ORDERS) {
+
                         popUpTo(Routes.HOME)
                     }
                 }
             )
         }
+
         composable(Routes.WISHLIST) {
+
             WishlistScreen(
-                onBack = { navController.popBackStack() },
-                onOpenProduct = { pid -> navController.navigate(Routes.product(pid)) }
+                onBack = {
+                    navController.popBackStack()
+                },
+
+                onOpenProduct = { pid ->
+                    navController.navigate(Routes.product(pid))
+                }
             )
         }
+
         composable(Routes.PROFILE) {
+
             ProfileScreen(
-                onBack = { navController.popBackStack() },
-                onOpenOrders = { navController.navigate(Routes.ORDERS) },
-                onOpenWishlist = { navController.navigate(Routes.WISHLIST) },
-                onOpenSeller = { navController.navigate(Routes.SELLER) },
-                onOpenAdmin = { navController.navigate(Routes.ADMIN) }
+                onBack = {
+                    navController.popBackStack()
+                },
+
+                onOpenOrders = {
+                    navController.navigate(Routes.ORDERS)
+                },
+
+                onOpenWishlist = {
+                    navController.navigate(Routes.WISHLIST)
+                },
+
+                onOpenSeller = {
+                    navController.navigate(Routes.SELLER)
+                },
+
+                onOpenAdmin = {
+                    navController.navigate(Routes.ADMIN)
+                }
             )
         }
+
         composable(Routes.ORDERS) {
-            OrderTrackingScreen(onBack = { navController.popBackStack() })
-        }
-        composable(Routes.SEARCH) {
-            SearchScreen(
-                onBack = { navController.popBackStack() },
-                onOpenProduct = { pid -> navController.navigate(Routes.product(pid)) }
+
+            OrderTrackingScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
             )
         }
-        composable(Routes.SELLER) {
-            SellerDashboardScreen(onBack = { navController.popBackStack() })
+
+        composable(Routes.SEARCH) {
+
+            SearchScreen(
+                onBack = {
+                    navController.popBackStack()
+                },
+
+                onOpenProduct = { pid ->
+                    navController.navigate(Routes.product(pid))
+                }
+            )
         }
+
+        composable(Routes.SELLER) {
+
+            SellerDashboardScreen()
+        }
+
         composable(Routes.ADMIN) {
-            AdminDashboardScreen(onBack = { navController.popBackStack() })
+
+            AdminDashboardScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
