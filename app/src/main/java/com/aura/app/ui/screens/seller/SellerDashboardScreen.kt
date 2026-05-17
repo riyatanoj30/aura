@@ -3,17 +3,14 @@ package com.aura.app.ui.screens.seller
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.ShoppingBag
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,30 +21,31 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-data class Product(
-    val id: Int,
+data class SellerProduct(
     val name: String,
     val price: String
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SellerDashboardScreen() {
+fun SellerDashboardScreen(
+    onBack: () -> Unit = {}
+) {
 
-    val products = List(10) {
-        Product(
-            id = it,
-            name = "Product ${it + 1}",
-            price = "₹ ${(it + 1) * 999}"
-        )
-    }
+    val products = listOf(
+        SellerProduct("Aura Premium Jacket", "₹4,999"),
+        SellerProduct("Old Money Shirt", "₹2,499"),
+        SellerProduct("Luxury Trousers", "₹3,299"),
+        SellerProduct("Classic Watch", "₹7,999")
+    )
 
     Scaffold(
+
         topBar = {
+
             TopAppBar(
                 title = {
                     Text("Seller Dashboard")
@@ -56,9 +54,13 @@ fun SellerDashboardScreen() {
         },
 
         floatingActionButton = {
+
             FloatingActionButton(
-                onClick = { }
+                onClick = {
+                    // TODO: Add Product
+                }
             ) {
+
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = "Add Product"
@@ -66,70 +68,48 @@ fun SellerDashboardScreen() {
             }
         }
 
-    ) { innerPadding ->
+    ) { paddingValues ->
 
-        SellerContent(
-            paddingValues = innerPadding,
-            products = products
-        )
-    }
-}
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
 
-@Composable
-private fun SellerContent(
-    paddingValues: PaddingValues,
-    products: List<Product>
-) {
+            verticalArrangement = Arrangement.spacedBy(12.dp),
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .padding(16.dp),
+            contentPadding = PaddingValues(16.dp)
+        ) {
 
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
+            items(products) { product ->
 
-        items(products) { product ->
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
 
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-
-                elevation = CardDefaults.cardElevation(
-                    defaultElevation = 6.dp
-                )
-            ) {
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    elevation = CardDefaults.cardElevation(
+                        defaultElevation = 6.dp
+                    )
                 ) {
 
-                    Column {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+
+                        Icon(
+                            imageVector = Icons.Default.ShoppingBag,
+                            contentDescription = null
+                        )
 
                         Text(
                             text = product.name,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-
-                        Spacer(
-                            modifier = Modifier.height(4.dp)
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.padding(top = 8.dp)
                         )
 
                         Text(
                             text = product.price,
-                            style = MaterialTheme.typography.bodyMedium
+                            style = MaterialTheme.typography.bodyLarge
                         )
                     }
-
-                    Icon(
-                        imageVector = Icons.Default.ShoppingCart,
-                        contentDescription = null
-                    )
                 }
             }
         }
