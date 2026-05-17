@@ -3,11 +3,15 @@ package com.aura.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -18,6 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+
             AuraApp()
         }
     }
@@ -28,10 +33,19 @@ fun AuraApp() {
 
     MaterialTheme {
 
-        Surface {
+        Surface(
+            modifier = Modifier.fillMaxSize()
+        ) {
 
-            Text(text = "Aura ✨")
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
 
+                Text(
+                    text = "Aura ✨"
+                )
+            }
         }
     }
 }
