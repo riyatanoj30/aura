@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ink">#0B0908</color>
+    <color name="ivory">#F5F1EA</color>
+    <color name="champagne">#C9A961</color>
+    <color name="gold">#B8945F</color>
+    <color name="bronze">#8B6F47</color>
+    <color name="espresso">#2B1810</color>
+    <color name="beige">#D4C5B0</color>
+    <color name="bone">#ECE5D8</color>
+</resources>

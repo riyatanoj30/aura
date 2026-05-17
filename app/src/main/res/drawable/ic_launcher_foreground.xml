@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Centered minimal "A" mark for app icon foreground -->
+    <path
+        android:pathData="M44,42 L54,62 L64,42 M48,55 L60,55"
+        android:strokeColor="#C9A961"
+        android:strokeWidth="2.4"
+        android:fillColor="#00000000"
+        android:strokeLineCap="square"/>
+    <path
+        android:pathData="M40,72 L68,72"
+        android:strokeColor="#C9A961"
+        android:strokeWidth="1.2"/>
+</vector>

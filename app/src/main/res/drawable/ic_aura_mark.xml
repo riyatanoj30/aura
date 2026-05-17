@@ -1,0 +1,40 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="64dp"
+    android:viewportWidth="240"
+    android:viewportHeight="64">
+    <!-- Top hairline -->
+    <path
+        android:pathData="M40,18 L200,18"
+        android:strokeColor="#C9A961"
+        android:strokeWidth="0.6"/>
+    <!-- A -->
+    <path
+        android:pathData="M44,46 L52,28 L60,46 M47,40 L57,40"
+        android:strokeColor="#F5F1EA"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"/>
+    <!-- U -->
+    <path
+        android:pathData="M82,28 L82,42 Q82,46 86,46 L94,46 Q98,46 98,42 L98,28"
+        android:strokeColor="#F5F1EA"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"/>
+    <!-- R -->
+    <path
+        android:pathData="M122,46 L122,28 L132,28 Q138,28 138,33 Q138,38 132,38 L122,38 M132,38 L140,46"
+        android:strokeColor="#F5F1EA"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"/>
+    <!-- A -->
+    <path
+        android:pathData="M164,46 L172,28 L180,46 M167,40 L177,40"
+        android:strokeColor="#F5F1EA"
+        android:strokeWidth="1.2"
+        android:fillColor="#00000000"/>
+    <!-- Bottom hairline -->
+    <path
+        android:pathData="M40,54 L200,54"
+        android:strokeColor="#C9A961"
+        android:strokeWidth="0.6"/>
+</vector>
